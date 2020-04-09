@@ -28,8 +28,7 @@ namespace CourseLibrary.API
 
             services.AddDbContext<CourseLibraryContext>(options =>
             {
-                options.UseSqlServer(
-                    @"Server=127.0.0.1,1433;Database=CourseLibraryDB;User Id=SA;Password=Efren1234;");
+                options.UseSqlServer(Configuration.GetConnectionString("CourseLibraryDB"));
             });
         }
 
