@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace PluralsightCourseAPI.Migrations
 {
     [DbContext(typeof(CourseLibraryContext))]
-    [Migration("20200409233138_InitialMigration")]
+    [Migration("20200409234844_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
