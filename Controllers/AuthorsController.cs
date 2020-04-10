@@ -57,5 +57,12 @@ namespace PluralsightCourseAPI.Controllers
 
             return CreatedAtRoute("GetAuthor", new { authorId = authorDto.Id }, authorDto);
         }
+
+        [HttpOptions]
+        public IActionResult AuthorsOptions()
+        {
+            Response.Headers.Add("Allow", "GET,OPTIONS, POST");
+            return Ok();
+        }
     }
 }
