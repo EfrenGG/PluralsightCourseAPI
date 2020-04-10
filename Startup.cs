@@ -1,5 +1,4 @@
-using PluralsightCourseAPI.DbContexts;
-using PluralsightCourseAPI.Services;
+using System;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -8,6 +7,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using AutoMapper;
+
+using PluralsightCourseAPI.DbContexts;
+using PluralsightCourseAPI.Services;
 
 namespace PluralsightCourseAPI
 {
@@ -27,6 +30,8 @@ namespace PluralsightCourseAPI
             {
                 config.ReturnHttpNotAcceptable = true;
             }).AddXmlDataContractSerializerFormatters();
+
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             services.AddScoped<ICourseLibraryRepository, CourseLibraryRepository>();
 
