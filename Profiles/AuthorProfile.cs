@@ -1,7 +1,7 @@
 using AutoMapper;
 using PluralsightCourseAPI.Entities;
-using PluralsightCourseAPI.Helpers;
 using PluralsightCourseAPI.Models;
+using PluralsightCourseAPI.Helpers;
 
 namespace PluralsightCourseAPI.Profiles
 {
