@@ -32,7 +32,7 @@ namespace PluralsightCourseAPI.Controllers
             return Ok(_mapper.Map<IEnumerable<AuthorDto>>(authorsEntity));
         }
 
-        [HttpGet("{authorId}")]
+        [HttpGet("{authorId}", Name = "GetAuthor")]
         [HttpHead("{authorId}")]
         public ActionResult<AuthorDto> GetAuthor(Guid authorId)
         {
@@ -44,6 +44,18 @@ namespace PluralsightCourseAPI.Controllers
             }
 
             return Ok(_mapper.Map<AuthorDto>(author));
+        }
+
+        [HttpPost]
+        public ActionResult<AuthorDto> CreateAuthor(AuthorForCreationDto author)
+        {
+            Author authorEntity = _mapper.Map<Author>(author);
+            _repo.AddAuthor(authorEntity);
+            _repo.Save();
+
+            AuthorDto authorDto = _mapper.Map<AuthorDto>(authorEntity);
+
+            return CreatedAtRoute("GetAuthor", new { authorId = authorDto.Id }, authorDto);
         }
     }
 }

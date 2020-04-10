@@ -16,6 +16,8 @@ namespace PluralsightCourseAPI.Profiles
                 .ForMember(
                     des => des.Age,
                     opt => opt.MapFrom(src => src.DateOfBirth.GetCurrentAge()));
+
+            CreateMap<AuthorForCreationDto, Author>();
         }
     }
 }
