@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 
 using CourseLibrary.API.Services;
 using CourseLibrary.API.Entities;
+using PluralsightCourseAPI.Models;
+using PluralsightCourseAPI.Helpers;
 
 namespace PluralsightCourseAPI.Controllers
 {
@@ -22,7 +24,21 @@ namespace PluralsightCourseAPI.Controllers
         [HttpGet]
         public IActionResult GetAuthors()
         {
-            IEnumerable<Author> authors = _repo.GetAuthors();
+            IEnumerable<Author> authorsEntity = _repo.GetAuthors();
+            IList<AuthorDto> authors = new List<AuthorDto>();
+
+            foreach (Author author in authorsEntity)
+            {
+                authors.Add(new AuthorDto()
+                {
+                    Id = author.Id,
+                    Name = $"${author.FirstName} ${author.LastName}",
+                    Age = author.DateOfBirth.GetCurrentAge(),
+                    MainCategory = author.MainCategory
+
+                });
+
+            }
             return Ok(authors);
         }
 
