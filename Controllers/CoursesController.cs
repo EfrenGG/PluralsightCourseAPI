@@ -24,6 +24,7 @@ namespace PluralsightCourseAPI.Controllers
         }
 
         [HttpGet]
+        [HttpHead]
         public ActionResult<IEnumerable<CourseDto>> GetCoursesForAuthor(Guid authorId)
         {
             if (!_repo.AuthorExists(authorId))
@@ -35,6 +36,7 @@ namespace PluralsightCourseAPI.Controllers
         }
 
         [HttpGet("{courseId}")]
+        [HttpHead("{courseId}")]
         public ActionResult<CourseDto> GetCourseForAuthor(Guid authorId, Guid courseId)
         {
             if (!_repo.AuthorExists(authorId))

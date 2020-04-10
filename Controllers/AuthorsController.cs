@@ -24,6 +24,7 @@ namespace PluralsightCourseAPI.Controllers
         }
 
         [HttpGet]
+        [HttpHead]
         public ActionResult<IEnumerable<AuthorDto>> GetAuthors()
         {
             IEnumerable<Author> authorsEntity = _repo.GetAuthors();
@@ -31,6 +32,7 @@ namespace PluralsightCourseAPI.Controllers
         }
 
         [HttpGet("{authorId}")]
+        [HttpHead("{authorId}")]
         public ActionResult<AuthorDto> GetAuthor(Guid authorId)
         {
             Author author = _repo.GetAuthor(authorId);
