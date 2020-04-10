@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
+using AutoMapper;
 
 using PluralsightCourseAPI.Services;
 using PluralsightCourseAPI.Entities;
 using PluralsightCourseAPI.Models;
-using PluralsightCourseAPI.Helpers;
 
 namespace PluralsightCourseAPI.Controllers
 {
@@ -15,31 +15,19 @@ namespace PluralsightCourseAPI.Controllers
     {
 
         private readonly ICourseLibraryRepository _repo;
+        private readonly IMapper _mapper;
 
-        public AuthorsController(ICourseLibraryRepository repo)
+        public AuthorsController(ICourseLibraryRepository repo, IMapper mapper)
         {
             _repo = repo ?? throw new ArgumentNullException(nameof(repo));
+            _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
         [HttpGet]
         public ActionResult<IList<AuthorDto>> GetAuthors()
         {
             IEnumerable<Author> authorsEntity = _repo.GetAuthors();
-            IList<AuthorDto> authors = new List<AuthorDto>();
-
-            foreach (Author author in authorsEntity)
-            {
-                authors.Add(new AuthorDto()
-                {
-                    Id = author.Id,
-                    Name = $"${author.FirstName} ${author.LastName}",
-                    Age = author.DateOfBirth.GetCurrentAge(),
-                    MainCategory = author.MainCategory
-
-                });
-
-            }
-            return Ok(authors);
+            return Ok(_mapper.Map<IEnumerable<AuthorDto>>(authorsEntity));
         }
 
         [HttpGet("{authorId}")]
@@ -52,7 +40,7 @@ namespace PluralsightCourseAPI.Controllers
                 return NotFound();
             }
 
-            return Ok(author);
+            return Ok(_mapper.Map<AuthorDto>(author));
         }
     }
 }
