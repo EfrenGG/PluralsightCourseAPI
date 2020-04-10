@@ -4,7 +4,9 @@ using PluralsightCourseAPI.ValidationAttributes;
 
 namespace PluralsightCourseAPI.Models
 {
-    [CourseTitleMustBeDifferentFromDescriptionAttribute]
+    [CourseTitleMustBeDifferentFromDescriptionAttribute(
+        ErrorMessage = "The title and description should not be the same."
+    )]
     public class CourseForCreationDto
     {
         [Required]

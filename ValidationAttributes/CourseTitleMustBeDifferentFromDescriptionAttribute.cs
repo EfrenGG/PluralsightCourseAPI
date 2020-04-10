@@ -12,7 +12,7 @@ namespace PluralsightCourseAPI.ValidationAttributes
             if (course.Title == course.Description)
             {
                 return new ValidationResult(
-                    "The provided description should be different from title.",
+                    ErrorMessage ?? "The provided description should be different from title.",
                     new[] { "Global" }
                 );
             }
