@@ -22,7 +22,7 @@ namespace PluralsightCourseAPI.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAuthors()
+        public ActionResult<IList<AuthorDto>> GetAuthors()
         {
             IEnumerable<Author> authorsEntity = _repo.GetAuthors();
             IList<AuthorDto> authors = new List<AuthorDto>();
