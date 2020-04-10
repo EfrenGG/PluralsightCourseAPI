@@ -122,13 +122,30 @@ namespace PluralsightCourseAPI.Services
             return _context.Authors.ToList<Author>();
         }
 
-        public IEnumerable<Author> GetAuthors(string mainCategory)
+        public IEnumerable<Author> GetAuthors(string mainCategory, string searchQuery)
         {
-            if (string.IsNullOrEmpty(mainCategory))
+            if (string.IsNullOrWhiteSpace(mainCategory) && string.IsNullOrWhiteSpace(searchQuery))
             {
                 return GetAuthors();
             }
-            return _context.Authors.Where(a => a.MainCategory == mainCategory);
+
+            IQueryable<Author> authors = _context.Authors as IQueryable<Author>;
+
+            if (!string.IsNullOrWhiteSpace(mainCategory))
+            {
+                mainCategory = mainCategory.Trim();
+                authors = authors.Where(a => a.MainCategory == mainCategory);
+            }
+
+            if (!string.IsNullOrWhiteSpace(searchQuery))
+            {
+                searchQuery = searchQuery.Trim();
+                authors = authors.Where(a => a.FirstName.Contains(searchQuery)
+                    || a.LastName.Contains(searchQuery)
+                    || a.MainCategory.Contains(searchQuery));
+            }
+
+            return authors.ToList();
         }
 
         public IEnumerable<Author> GetAuthors(IEnumerable<Guid> authorIds)
