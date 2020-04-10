@@ -25,9 +25,10 @@ namespace PluralsightCourseAPI.Controllers
 
         [HttpGet]
         [HttpHead]
-        public ActionResult<IEnumerable<AuthorDto>> GetAuthors()
+        public ActionResult<IEnumerable<AuthorDto>> GetAuthors(
+            [FromQuery] string mainCategory)
         {
-            IEnumerable<Author> authorsEntity = _repo.GetAuthors();
+            IEnumerable<Author> authorsEntity = _repo.GetAuthors(mainCategory);
             return Ok(_mapper.Map<IEnumerable<AuthorDto>>(authorsEntity));
         }
 

@@ -122,6 +122,15 @@ namespace PluralsightCourseAPI.Services
             return _context.Authors.ToList<Author>();
         }
 
+        public IEnumerable<Author> GetAuthors(string mainCategory)
+        {
+            if (string.IsNullOrEmpty(mainCategory))
+            {
+                return GetAuthors();
+            }
+            return _context.Authors.Where(a => a.MainCategory == mainCategory);
+        }
+
         public IEnumerable<Author> GetAuthors(IEnumerable<Guid> authorIds)
         {
             if (authorIds == null)
