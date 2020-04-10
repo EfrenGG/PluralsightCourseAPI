@@ -1,8 +1,10 @@
-﻿using PluralsightCourseAPI.DbContexts;
-using PluralsightCourseAPI.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+
+using PluralsightCourseAPI.DbContexts;
+using PluralsightCourseAPI.Entities;
+using PluralsightCourseAPI.ResourceParameters;
 
 namespace PluralsightCourseAPI.Services
 {
@@ -122,24 +124,25 @@ namespace PluralsightCourseAPI.Services
             return _context.Authors.ToList<Author>();
         }
 
-        public IEnumerable<Author> GetAuthors(string mainCategory, string searchQuery)
+        public IEnumerable<Author> GetAuthors(AuthorResourceParameters authorResourceParameters)
         {
-            if (string.IsNullOrWhiteSpace(mainCategory) && string.IsNullOrWhiteSpace(searchQuery))
+            if (string.IsNullOrWhiteSpace(authorResourceParameters.MainCategory)
+                && string.IsNullOrWhiteSpace(authorResourceParameters.SearchQuery))
             {
                 return GetAuthors();
             }
 
             IQueryable<Author> authors = _context.Authors as IQueryable<Author>;
 
-            if (!string.IsNullOrWhiteSpace(mainCategory))
+            if (!string.IsNullOrWhiteSpace(authorResourceParameters.MainCategory))
             {
-                mainCategory = mainCategory.Trim();
+                string mainCategory = authorResourceParameters.MainCategory.Trim();
                 authors = authors.Where(a => a.MainCategory == mainCategory);
             }
 
-            if (!string.IsNullOrWhiteSpace(searchQuery))
+            if (!string.IsNullOrWhiteSpace(authorResourceParameters.SearchQuery))
             {
-                searchQuery = searchQuery.Trim();
+                string searchQuery = authorResourceParameters.SearchQuery.Trim();
                 authors = authors.Where(a => a.FirstName.Contains(searchQuery)
                     || a.LastName.Contains(searchQuery)
                     || a.MainCategory.Contains(searchQuery));

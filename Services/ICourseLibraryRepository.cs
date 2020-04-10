@@ -1,6 +1,8 @@
-﻿using PluralsightCourseAPI.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
+
+using PluralsightCourseAPI.Entities;
+using PluralsightCourseAPI.ResourceParameters;
 
 namespace PluralsightCourseAPI.Services
 {
@@ -12,7 +14,7 @@ namespace PluralsightCourseAPI.Services
         void UpdateCourse(Course course);
         void DeleteCourse(Course course);
         IEnumerable<Author> GetAuthors();
-        IEnumerable<Author> GetAuthors(string mainCategory, string searchQuery);
+        IEnumerable<Author> GetAuthors(AuthorResourceParameters authorResourceParameters);
         Author GetAuthor(Guid authorId);
         IEnumerable<Author> GetAuthors(IEnumerable<Guid> authorIds);
         void AddAuthor(Author author);

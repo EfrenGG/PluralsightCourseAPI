@@ -6,6 +6,7 @@ using AutoMapper;
 using PluralsightCourseAPI.Services;
 using PluralsightCourseAPI.Entities;
 using PluralsightCourseAPI.Models;
+using PluralsightCourseAPI.ResourceParameters;
 
 namespace PluralsightCourseAPI.Controllers
 {
@@ -25,11 +26,9 @@ namespace PluralsightCourseAPI.Controllers
 
         [HttpGet]
         [HttpHead]
-        public ActionResult<IEnumerable<AuthorDto>> GetAuthors(
-            [FromQuery] string mainCategory,
-            [FromQuery] string searchQuery)
+        public ActionResult<IEnumerable<AuthorDto>> GetAuthors([FromQuery] AuthorResourceParameters authorResourceParameters)
         {
-            IEnumerable<Author> authorsEntity = _repo.GetAuthors(mainCategory, searchQuery);
+            IEnumerable<Author> authorsEntity = _repo.GetAuthors(authorResourceParameters);
             return Ok(_mapper.Map<IEnumerable<AuthorDto>>(authorsEntity));
         }
 
