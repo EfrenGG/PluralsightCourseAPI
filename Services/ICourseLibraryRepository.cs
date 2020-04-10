@@ -1,11 +1,11 @@
-﻿using CourseLibrary.API.Entities;
+﻿using PluralsightCourseAPI.Entities;
 using System;
 using System.Collections.Generic;
 
-namespace CourseLibrary.API.Services
+namespace PluralsightCourseAPI.Services
 {
     public interface ICourseLibraryRepository
-    {    
+    {
         IEnumerable<Course> GetCourses(Guid authorId);
         Course GetCourse(Guid authorId, Guid courseId);
         void AddCourse(Guid authorId, Course course);

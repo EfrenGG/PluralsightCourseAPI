@@ -1,8 +1,8 @@
-﻿using CourseLibrary.API.Entities;
+﻿using PluralsightCourseAPI.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 
-namespace CourseLibrary.API.DbContexts
+namespace PluralsightCourseAPI.DbContexts
 {
     public class CourseLibraryContext : DbContext
     {

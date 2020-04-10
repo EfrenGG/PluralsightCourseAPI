@@ -1,4 +1,4 @@
-using CourseLibrary.API.DbContexts;
+using PluralsightCourseAPI.DbContexts;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -6,7 +6,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using System;
 
-namespace CourseLibrary.API
+namespace PluralsightCourseAPI
 {
     public class Program
     {
@@ -37,7 +37,7 @@ namespace CourseLibrary.API
             host.Run();
         }
 
-        
+
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>

@@ -2,8 +2,8 @@ using System;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 
-using CourseLibrary.API.Services;
-using CourseLibrary.API.Entities;
+using PluralsightCourseAPI.Services;
+using PluralsightCourseAPI.Entities;
 using PluralsightCourseAPI.Models;
 using PluralsightCourseAPI.Helpers;
 

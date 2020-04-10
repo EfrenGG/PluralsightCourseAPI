@@ -2,11 +2,11 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace CourseLibrary.API.Entities
+namespace PluralsightCourseAPI.Entities
 {
     public class Course
     {
-        [Key]       
+        [Key]
         public Guid Id { get; set; }
 
         [Required]
