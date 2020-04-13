@@ -36,9 +36,8 @@ namespace PluralsightCourseAPI
             services.AddScoped<ICourseLibraryRepository, CourseLibraryRepository>();
 
             services.AddDbContext<CourseLibraryContext>(options =>
-            {
-                options.UseSqlServer(Configuration.GetConnectionString("CourseLibraryDB"));
-            });
+                options.UseSqlite("Data Source=blogging.db"));
+            // options.UseSqlServer(Configuration.GetConnectionString("CourseLibraryDB"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

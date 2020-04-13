@@ -20,7 +20,7 @@ namespace PluralsightCourseAPI
             {
                 try
                 {
-                    var context = scope.ServiceProvider.GetService<CourseLibraryContext>();
+                    CourseLibraryContext context = scope.ServiceProvider.GetService<CourseLibraryContext>();
                     // for demo purposes, delete the database & migrate on startup so 
                     // we can start with a clean slate
                     context.Database.EnsureDeleted();
@@ -28,7 +28,7 @@ namespace PluralsightCourseAPI
                 }
                 catch (Exception ex)
                 {
-                    var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
+                    ILogger<Program> logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
                     logger.LogError(ex, "An error occurred while migrating the database.");
                 }
             }
@@ -36,7 +36,6 @@ namespace PluralsightCourseAPI
             // run the web app
             host.Run();
         }
-
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
